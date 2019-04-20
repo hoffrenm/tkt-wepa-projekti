@@ -58,6 +58,8 @@ public class ImageController {
         image.setDescription(description);
         image.setContentType(file.getContentType());
         image.setContent(file.getBytes());
+       
+        
         image.setContentLength(file.getSize());
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

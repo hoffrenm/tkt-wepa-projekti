@@ -41,5 +41,6 @@ public class Image extends AbstractPersistable<Long> {
     private String contentType;
     private Long contentLength;
     
+    @Lob
     private byte[] content;
 }
