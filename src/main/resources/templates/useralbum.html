@@ -13,7 +13,7 @@ and open the template in the editor.
         <div class="container">
             <div class="card-columns mt-5 justify-content-center">
 
-                <div th:if="${images.isEmpty()}">
+                <div th:if="${#lists.isEmpty(images)}">
                     <div class="row justify-content-center" style="margin-top:20px;">
                         <div class="col-12 col-md-10 col-lg-8">
                             <p>Käyttäjä ei ole ladannut kuvia</p>
