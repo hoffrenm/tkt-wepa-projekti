@@ -7,6 +7,7 @@ package projekti.controllers;
 
 import java.io.IOException;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,7 +51,9 @@ public class ImageController {
 
         return new ResponseEntity<>(image.getContent(), headers, HttpStatus.CREATED);
     }
-
+    
+    
+    @Transactional
     @PostMapping("/image/add")
     public String addFile(@RequestParam("file") MultipartFile file, @RequestParam String description) throws IOException {
         Image image = new Image();
