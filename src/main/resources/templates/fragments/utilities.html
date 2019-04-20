@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <!-- Form used to post messages to users wall -->
+        <form th:fragment="postform(page)" class="form-group"
+              th:action="@{/users/{url}/post(url=${page.getCustomUrl()})}" th:method="POST">
+            <div>
+                <label> Lähetä viesti käyttäjän [[${page.account.name}]] seinälle </label>
+                <textarea class="form-control" name="content" rows="3" placeholder="kirjoita viesti"></textarea>
+            </div>
+            </br>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Lähetä">
+            </div>
+        </form>
+
+        <!-- Form used to post comments to posts -->
+        <form th:fragment="commentform(page, post)" class="form-group"
+              th:action="@{/users/{url}/comment/post/{postId}(url=${page.getCustomUrl()}, postId=${post.getId()})}" th:method="POST">
+            <label>Kommentit</label>
+            <br />
+            <textarea class="form-control" rows="1" name="content" placeholder="kirjoita kommentti"></textarea>
+            <div>
+                <input class="btn btn-primary btn-sm" style="margin-top:10px;" type="submit" value="Kommentoi">
+            </div>
+        </form>
+
+        <!-- Form used to post comments to images -->
+        <form th:fragment="imagecommentform(url, id)" class="form-group"
+              th:action="@{/comment/{url}/image/{imageId}(url=${url}, imageId=${image.getId()})}" th:method="POST">
+            <div class="input-group mb-1">
+                <input class="form-control" type="text" name="content" placeholder="Kirjoita kommentti">
+                <div class="input-group-append">   
+                    <button type="submit" class="btn btn-outline-primary fas fa-reply">>></button>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- Like button for posts -->
+        <form th:fragment="likebutton(id, url)" class="form-group"
+              th:action="@{/post/like/{postId}(postId=${id})}" th:method="POST">
+            <input type="hidden" name="url" th:value="${url}">
+            <div>
+                <button class="btn btn-block btn-success">Tykkää</button>
+            </div>
+        </form>
+
+        <!-- Like button for images -->
+        <form th:fragment="likebuttonImage(id, url)" class="form-group"
+              th:action="@{/image/like/{id}(id=${id})}" th:method="POST">
+            <input type="hidden" name="url" th:value="${url}">
+            <div>
+                <button class="btn btn-success btn-block float-right">+1</button>
+            </div>
+        </form>
+
+    </body>
+</html>
+
