@@ -25,7 +25,7 @@ and open the template in the editor.
                         <textarea name="description" placeholder="Lisää tiedostolle osuva kuvaus" rows="2"></textarea>
                     </div>
                     <div class="form-group col-2 justify-content-center">
-                        <button type="submit" value="Lisää" class="btn btn-primary">Lisää</button>
+                        <button type="submit" value="Lisää" class="btn btn-primary" th:disabled="${images.size() >= 10}">Lisää</button>
                     </div>
                 </form>
 
