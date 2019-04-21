@@ -19,10 +19,10 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Autowired
     private UserDetailsService userDetailsService;
     
-    @Override
-    public void configure(WebSecurity sec) {
-        sec.ignoring().antMatchers("/index", "/registrations");
-    }
+//    @Override
+//    public void configure(WebSecurity sec) {
+//        sec.ignoring().antMatchers("/index", "/registrations");
+//    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -30,6 +30,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
         http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
+                .antMatchers("/index").permitAll()
                 .antMatchers("/registrations").permitAll()
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
                 .anyRequest().authenticated().and()
