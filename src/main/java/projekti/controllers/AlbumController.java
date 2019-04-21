@@ -5,6 +5,7 @@
  */
 package projekti.controllers;
 
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import projekti.entities.Account;
 import projekti.entities.Image;
 import projekti.repositories.AccountRepository;
-import projekti.repositories.ImageRepository;
 
 /**
  *
@@ -24,9 +24,6 @@ import projekti.repositories.ImageRepository;
  */
 @Controller
 public class AlbumController {
-
-    @Autowired
-    private ImageRepository imageRepository;
 
     @Autowired
     private AccountRepository accountRepository;

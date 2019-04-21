@@ -52,7 +52,6 @@ public class ImageController {
         return new ResponseEntity<>(image.getContent(), headers, HttpStatus.CREATED);
     }
     
-    
     @Transactional
     @PostMapping("/image/add")
     public String addFile(@RequestParam("file") MultipartFile file, @RequestParam String description) throws IOException {
@@ -61,8 +60,6 @@ public class ImageController {
         image.setDescription(description);
         image.setContentType(file.getContentType());
         image.setContent(file.getBytes());
-       
-        
         image.setContentLength(file.getSize());
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
