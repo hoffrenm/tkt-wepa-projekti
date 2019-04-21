@@ -30,11 +30,11 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
         http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
-                .antMatchers("/index").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/registrations").permitAll()
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
                 .anyRequest().authenticated().and()
-                .formLogin().defaultSuccessUrl("/home", true).permitAll().and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/home", true).permitAll().and()
                 .logout().permitAll();
     }
 

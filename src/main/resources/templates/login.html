@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="fragments/layout :: head"></head>
+    <body>
+        <header th:replace="fragments/layout :: header"></header>
+
+        <div class="container">
+
+            <form th:action="@{/login}" method="POST" class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h2>Kirjaudu sisään</h2>
+                        <hr>
+                    </div>
+                </div>
+
+                <div th:if="${param.error}" class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 alert alert-danger">
+                        <h6>Virheelliset kirjautumistiedot</h4>
+                    </div>
+                </div>
+
+                <div th:if="${param.logout}" class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 alert alert-success">
+                        <h6>Olet kirjautunut ulos</h6>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-md-2 field-label-responsive">
+                        <label for="name">Käyttäjätunnus</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+
+                                <input type="text" name="username" class="form-control" id="name"
+                                       placeholder="Käyttäjätunnus" required autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div  class="form-control-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-md-2 field-label-responsive">
+                        <label for="password">Salasana</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="password" name="password" class="form-control" id="password"
+                                       placeholder="Salasana" required autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Kirjaudu</button>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+
+        <footer th:replace="fragments/layout :: footer"></footer>
+
+    </body>
+</html>

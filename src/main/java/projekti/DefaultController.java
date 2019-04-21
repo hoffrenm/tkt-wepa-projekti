@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DefaultController {
 
-    @GetMapping("/")
+    @GetMapping("*")
     public String welcome() {
-        return "forward:/index.html";
+        return "index";
+    }
+    
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
