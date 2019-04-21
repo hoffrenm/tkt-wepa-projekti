@@ -5,12 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -18,6 +18,11 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
 
     @Autowired
     private UserDetailsService userDetailsService;
+    
+    @Override
+    public void configure(WebSecurity sec) {
+        sec.ignoring().antMatchers("/index", "/registrations");
+    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -25,7 +30,6 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
         http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
-                .antMatchers("/index").permitAll()
                 .antMatchers("/registrations").permitAll()
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
                 .anyRequest().authenticated().and()
